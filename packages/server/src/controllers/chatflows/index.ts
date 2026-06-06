@@ -51,7 +51,8 @@ const deleteChatflow = async (req: Request, res: Response, next: NextFunction) =
 
 const getAllChatflows = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const apiResponse = await chatflowsService.getAllChatflows(req.query?.type as ChatflowType)
+        const orgId = (req as any).identity?.orgId
+        const apiResponse = await chatflowsService.getAllChatflows(req.query?.type as ChatflowType, orgId)
         return res.json(apiResponse)
     } catch (error) {
         next(error)
@@ -98,6 +99,10 @@ const saveChatflow = async (req: Request, res: Response, next: NextFunction) => 
         const body = req.body
         const newChatFlow = new ChatFlow()
         Object.assign(newChatFlow, body)
+        // Stamp orgId and creator from authenticated identity
+        const identity = (req as any).identity
+        if (identity?.orgId) newChatFlow.orgId = identity.orgId
+        if (identity?.userId) newChatFlow.createdByUserId = identity.userId
         const apiResponse = await chatflowsService.saveChatflow(newChatFlow)
         return res.json(apiResponse)
     } catch (error) {

@@ -19,6 +19,12 @@ export class Assistant implements IAssistant {
     @Column({ nullable: true, type: 'text' })
     type?: AssistantType
 
+    @Column({ nullable: true })
+    orgId?: string
+
+    @Column({ nullable: true })
+    createdByUserId?: string
+
     @Column({ type: 'timestamp' })
     @CreateDateColumn()
     createdDate: Date

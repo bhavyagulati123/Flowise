@@ -47,9 +47,15 @@ import nvidiaNimRouter from './nvidia-nim'
 import executionsRouter from './executions'
 import validationRouter from './validation'
 import agentflowv2GeneratorRouter from './agentflowv2-generator'
+import authRouter from './auth'
+import organizationsRouter from './organizations'
+import invitationsRouter from './invitations'
 
 const router = express.Router()
 
+router.use('/auth', authRouter)
+router.use('/organizations', organizationsRouter)
+router.use('/invitations', invitationsRouter)
 router.use('/ping', pingRouter)
 router.use('/apikey', apikeyRouter)
 router.use('/assistants', assistantsRouter)

@@ -27,6 +27,12 @@ export class CustomTemplate implements ICustomTemplate {
     @Column({ nullable: true, type: 'text' })
     type?: string
 
+    @Column({ nullable: true })
+    orgId?: string
+
+    @Column({ nullable: true })
+    createdByUserId?: string
+
     @Column({ type: 'timestamp' })
     @CreateDateColumn()
     createdDate: Date

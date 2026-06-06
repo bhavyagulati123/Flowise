@@ -16,6 +16,12 @@ export class Variable implements IVariable {
     @Column({ default: 'string', type: 'text' })
     type: string
 
+    @Column({ nullable: true })
+    orgId?: string
+
+    @Column({ nullable: true })
+    createdByUserId?: string
+
     @Column({ type: 'timestamp' })
     @CreateDateColumn()
     createdDate: Date

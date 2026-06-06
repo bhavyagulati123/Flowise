@@ -15,6 +15,12 @@ export class ApiKey implements IApiKey {
     @Column({ type: 'text' })
     keyName: string
 
+    @Column({ nullable: true, type: 'text' })
+    orgId?: string
+
+    @Column({ nullable: true, type: 'text' })
+    createdByUserId?: string
+
     @Column({ type: 'timestamp' })
     @UpdateDateColumn()
     updatedDate: Date

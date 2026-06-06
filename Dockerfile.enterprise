@@ -1,0 +1,26 @@
+# Enterprise build — uses node:20 (Debian) which has python3/g++/make pre-installed
+# No apk/apt-get needed → works without internet in the build container
+
+FROM node:20
+
+# node:20 has python3, make, g++, curl pre-installed
+RUN corepack enable && corepack prepare pnpm@9 --activate
+
+ENV PUPPETEER_SKIP_DOWNLOAD=true
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
+ENV NODE_OPTIONS=--max-old-space-size=8192
+
+WORKDIR /usr/src
+
+# Copy source
+COPY . .
+
+# Use pnpm with shamefully-hoist to create flat node_modules (avoids symlink issues with containerd)
+RUN pnpm install --config.engine-strict=false --config.audit=false --shamefully-hoist
+
+# Build TypeScript
+RUN pnpm build
+
+EXPOSE 3000
+
+CMD [ "pnpm", "start" ]

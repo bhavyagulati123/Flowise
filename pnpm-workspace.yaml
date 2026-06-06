@@ -1,2 +1,13 @@
 packages:
-    - 'packages/*'
+  - 'packages/*'
+allowBuilds:
+  '@swc/core': true
+  aws-sdk: false
+  bufferutil: true
+  cpu-features: false
+  cypress: false
+  msgpackr-extract: true
+  protobufjs: true
+  sqlite3: true
+  ssh2: true
+  utf-8-validate: true

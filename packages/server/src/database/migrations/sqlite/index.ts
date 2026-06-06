@@ -28,6 +28,9 @@ import { AddCustomTemplate1725629836652 } from './1725629836652-AddCustomTemplat
 import { AddFollowUpPrompts1726666294213 } from './1726666294213-AddFollowUpPrompts'
 import { AddTypeToAssistant1733011290987 } from './1733011290987-AddTypeToAssistant'
 import { AddExecutionEntity1738090872625 } from './1738090872625-AddExecutionEntity'
+import { AddOrgColumns1740000000001 } from './1740000000001-AddOrgColumns'
+import { CreateRBACTables1740000000002 } from './1740000000002-CreateRBACTables'
+import { SeedDefaultOrg1740000000003 } from './1740000000003-SeedDefaultOrg'
 
 export const sqliteMigrations = [
     Init1693835579790,
@@ -59,5 +62,8 @@ export const sqliteMigrations = [
     AddCustomTemplate1725629836652,
     AddFollowUpPrompts1726666294213,
     AddTypeToAssistant1733011290987,
-    AddExecutionEntity1738090872625
+    AddExecutionEntity1738090872625,
+    AddOrgColumns1740000000001,
+    CreateRBACTables1740000000002,
+    SeedDefaultOrg1740000000003
 ]

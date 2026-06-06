@@ -18,6 +18,12 @@ export class DocumentStore implements IDocumentStore {
     @Column({ nullable: true, type: 'text' })
     whereUsed: string
 
+    @Column({ nullable: true })
+    orgId?: string
+
+    @Column({ nullable: true })
+    createdByUserId?: string
+
     @Column({ type: 'timestamp' })
     @CreateDateColumn()
     createdDate: Date

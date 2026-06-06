@@ -119,10 +119,12 @@ const deleteChatflow = async (chatflowId: string): Promise<any> => {
     }
 }
 
-const getAllChatflows = async (type?: ChatflowType): Promise<ChatFlow[]> => {
+const getAllChatflows = async (type?: ChatflowType, orgId?: string): Promise<ChatFlow[]> => {
     try {
         const appServer = getRunningExpressApp()
-        const dbResponse = await appServer.AppDataSource.getRepository(ChatFlow).find()
+        const where: any = {}
+        if (orgId) where.orgId = orgId
+        const dbResponse = await appServer.AppDataSource.getRepository(ChatFlow).find({ where })
         if (type === 'MULTIAGENT') {
             return dbResponse.filter((chatflow) => chatflow.type === 'MULTIAGENT')
         } else if (type === 'AGENTFLOW') {
